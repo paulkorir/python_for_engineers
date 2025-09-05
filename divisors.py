@@ -1,6 +1,10 @@
 import sys
 
 
+def eval_bool():
+    return False
+
+
 def main():
     joint_divisors = list()  # append, join, ...
     other = list()
