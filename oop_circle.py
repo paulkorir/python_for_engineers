@@ -37,6 +37,7 @@ class Circle:
         y_max = self.position[1] + self.radius
         return x_min, y_min, x_max, y_max
 
+
 class Rectangle:
     def __init__(self, width, height, fill="white", stroke="black", position=(0, 0)):
         self.width = width
@@ -60,6 +61,18 @@ class Rectangle:
 
     def diagonal(self):
         return math.sqrt(self.width ** 2 + self.height ** 2)
+
+
+class Canvas:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+
+class Text:
+    def __init__(self, text, position=(0, 0)):
+        self.text = text
+        self.position = position
 
 
 def main():
