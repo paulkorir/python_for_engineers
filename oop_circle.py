@@ -62,6 +62,9 @@ class Rectangle:
     def diagonal(self):
         return math.sqrt(self.width ** 2 + self.height ** 2)
 
+    def __str__(self):
+        return f"Rectangle: {self.width} * {self.height}"
+
 
 class Canvas:
     def __init__(self, width, height):
@@ -76,9 +79,26 @@ class Text:
         self.colour = colour
 
 
+# class Square:
+#     def __init__(self, width, fill="white", stroke="black", position=(0, 0)):
+#         self.width = width
+#         self.fill = fill
+#         self.stroke = stroke
+#         self.position = position
+#
+#     def area(self):
+#         return self.width ** 2
+#
+#     def __str__(self):
+#         return f"Square: {self.width} * {self.width}"
+
+
 class Square(Rectangle):
-    def __init__(self, width, fill="white", position=(0, 0)):
-        super().__init__(width, width, fill=fill, position=position)
+    def __init__(self, width, fill="white", stroke="black", position=(0, 0)):
+        super().__init__(width, width, fill=fill, stroke=stroke, position=position)
+
+    def __str__(self): # overwritten the __str__ method
+        return f"Square: {self.width} * {self.width}"
 
 
 def main():
@@ -103,6 +123,12 @@ def main():
 
     # bounding box
     print(f"{circle.bounding_box() = }")
+
+    # instantiate a square object
+    square = Square(width=5)
+    print(square)
+    print(f"{square.area() = }")
+
     return 0
 
 
