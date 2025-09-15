@@ -40,12 +40,13 @@ class Circle:
 
 
 class Rectangle:
-    def __init__(self, width, height, fill="white", stroke="black", stroke_width=1, position=(0, 0)):
+    def __init__(self, width, height, fill="white", stroke="black", stroke_width=1, opacity=1.0, position=(0, 0)):
         self.width = width
         self.height = height
         self.fill = fill
         self.stroke = stroke
         self.stroke_width = stroke_width
+        self.opacity = opacity
         self.position = position
 
     def area(self):
@@ -69,7 +70,7 @@ class Rectangle:
 
 
 class Canvas(turtle.TurtleScreen):
-    def __init__(self, width=1200, height=750, bg="white"):
+    def __init__(self, width:int=1200, height:int=750, bg:str="white"):
         self.width = width
         self.height = height
         self.canvas = turtle.getcanvas()
@@ -79,7 +80,7 @@ class Canvas(turtle.TurtleScreen):
 
     def mystery_method(self):
         self.pen.up()
-        self.pen.goto(0, self.height / 2) # what does this do
+        self.pen.goto(0, self.height / 2)  # what does this do
         self.pen.down()
         self.pen.goto(0, -self.height / 2)
         self.pen.up()
@@ -113,10 +114,18 @@ class Text:
 
 class Square(Rectangle):
     def __init__(self, width, *args, **kwargs):
+        print(f"{args = }")
+        print(f"{kwargs = }")
         super().__init__(width, width, *args, **kwargs)
 
-    def __str__(self): # overwritten the __str__ method
+    def __str__(self):  # overwritten the __str__ method
         return f"Square: {self.width} * {self.width}"
+
+    def fake_method(self, a, b, c, d):  # four positional arguments
+        print(f"{a = }, {b = }, {c = }, {d = }")
+
+    def fake_method2(self, a=1, b=2, c=3, d=4): # four keyword arguments
+        print(f"{a = }, {b = }, {c = }, {d = }")
 
 
 def main():
@@ -143,12 +152,19 @@ def main():
     print(f"{circle.bounding_box() = }")
 
     # instantiate a square object
-    square = Square(width=5)
+    square = Square(width=5, opacity=0.5)
     print(square)
     print(f"{square.area() = }")
+    print(f"{square.opacity = }")
+    my_tuple = (1, 2, 3, 4)
+    # print(f"{square.fake_method(1, 2, 3, 4) = }")
+    square.fake_method(*my_tuple)
+
+    my_dict = {'a':5, 'b':6, 'c':7, 'd':8}
+    square.fake_method2(**my_dict)
 
     # canvas
-    canvas = Canvas()
+    canvas = Canvas("37")
     canvas.mystery_method()
 
     return 0

@@ -1,5 +1,6 @@
 import sys
 import turtle
+import time
 # turtle.forward()
 
 # from turtle import *
@@ -17,6 +18,7 @@ def draw_rectangle():
     turtle.done()
 
 def draw_circle():
+    time.sleep(2)
     pen = turtle.Turtle()
     if pen.isdown():
         pen.up()
