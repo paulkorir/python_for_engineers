@@ -50,7 +50,7 @@ class Rectangle:
         return self.width * self.height
 
     def perimeter(self):
-        return self.width * self.height * 2
+        return (self.width + self.height) * 2
 
     def bounding_box(self):
         x_min = self.position[0] - self.width / 2
@@ -70,9 +70,10 @@ class Canvas:
 
 
 class Text:
-    def __init__(self, text, position=(0, 0)):
+    def __init__(self, text, colour="red", position=(0, 0)):
         self.text = text
         self.position = position
+        self.colour = colour
 
 
 class Square(Rectangle):
