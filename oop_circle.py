@@ -1,5 +1,6 @@
 import math
 import sys
+import turtle
 
 
 class Circle:
@@ -39,11 +40,12 @@ class Circle:
 
 
 class Rectangle:
-    def __init__(self, width, height, fill="white", stroke="black", position=(0, 0)):
+    def __init__(self, width, height, fill="white", stroke="black", stroke_width=1, position=(0, 0)):
         self.width = width
         self.height = height
         self.fill = fill
         self.stroke = stroke
+        self.stroke_width = stroke_width
         self.position = position
 
     def area(self):
@@ -66,10 +68,26 @@ class Rectangle:
         return f"Rectangle: {self.width} * {self.height}"
 
 
-class Canvas:
-    def __init__(self, width, height):
+class Canvas(turtle.TurtleScreen):
+    def __init__(self, width=1200, height=750, bg="white"):
         self.width = width
         self.height = height
+        self.canvas = turtle.getcanvas()
+        super().__init__(self.canvas)
+        turtle.screensize(width, height, bg)
+        self.pen = turtle.RawPen(self.canvas)
+
+    def mystery_method(self):
+        self.pen.up()
+        self.pen.goto(0, self.height / 2) # what does this do
+        self.pen.down()
+        self.pen.goto(0, -self.height / 2)
+        self.pen.up()
+        self.pen.goto(-self.width / 2, 0)
+        self.pen.down()
+        self.pen.goto(self.width / 2, 0)
+        self.pen.up()
+        self.pen.home()
 
 
 class Text:
@@ -94,8 +112,8 @@ class Text:
 
 
 class Square(Rectangle):
-    def __init__(self, width, fill="white", stroke="black", position=(0, 0)):
-        super().__init__(width, width, fill=fill, stroke=stroke, position=position)
+    def __init__(self, width, *args, **kwargs):
+        super().__init__(width, width, *args, **kwargs)
 
     def __str__(self): # overwritten the __str__ method
         return f"Square: {self.width} * {self.width}"
@@ -128,6 +146,10 @@ def main():
     square = Square(width=5)
     print(square)
     print(f"{square.area() = }")
+
+    # canvas
+    canvas = Canvas()
+    canvas.mystery_method()
 
     return 0
 
