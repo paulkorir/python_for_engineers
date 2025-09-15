@@ -75,7 +75,8 @@ class Canvas(turtle.TurtleScreen):
         self.height = height
         self.canvas = turtle.getcanvas()
         super().__init__(self.canvas)
-        turtle.screensize(width, height, bg)
+        # fixed: the canvas is a turtle.TurtleScreen subclass so we can set the screensize on self
+        self.screensize(width, height, bg)
         self.pen = turtle.RawPen(self.canvas)
 
     def mystery_method(self):
@@ -164,8 +165,9 @@ def main():
     square.fake_method2(**my_dict)
 
     # canvas
-    canvas = Canvas("37")
+    canvas = Canvas()
     canvas.mystery_method()
+    turtle.done()
 
     return 0
 
