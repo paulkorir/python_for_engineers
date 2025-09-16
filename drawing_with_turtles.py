@@ -17,8 +17,7 @@ def draw_rectangle():
     turtle.forward(110)
     turtle.done()
 
-def draw_circle():
-    time.sleep(2)
+def draw_circle(radius=60):
     pen = turtle.Turtle()
     if pen.isdown():
         pen.up()
@@ -27,14 +26,14 @@ def draw_circle():
     pen.begin_fill()
     pen.pencolor("red")
     pen.fillcolor("purple")
-    pen.circle(60)
+    pen.circle(radius)
     pen.end_fill()
     pen.up()
     turtle.done()
 
 def main():
     # draw_rectangle()
-    draw_circle()
+    draw_circle(180)
     return 0
 
 

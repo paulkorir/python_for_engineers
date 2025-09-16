@@ -91,6 +91,9 @@ class Canvas(turtle.TurtleScreen):
         self.pen.up()
         self.pen.home()
 
+    def draw_cirle(self, cirlce):
+        # implement this
+
 
 class Text:
     def __init__(self, text, colour="red", position=(0, 0)):
