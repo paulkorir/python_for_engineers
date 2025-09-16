@@ -70,7 +70,7 @@ class Rectangle:
 
 
 class Canvas(turtle.TurtleScreen):
-    def __init__(self, width:int=1200, height:int=750, bg:str="white"):
+    def __init__(self, width: int = 1200, height: int = 750, bg: str = "white"):
         self.width = width
         self.height = height
         self.canvas = turtle.getcanvas()
@@ -93,6 +93,17 @@ class Canvas(turtle.TurtleScreen):
 
     def draw_circle(self, circle):
         # implement this
+        if self.pen.isdown():
+            self.pen.up()
+        x, y = circle.position  # unpacking operation of a sequence type (list, tuple)
+        self.pen.goto(x, y)
+        self.pen.down()
+        self.pen.begin_fill()
+        self.pen.pencolor("red")
+        self.pen.fillcolor("purple")
+        self.pen.circle(circle.radius)
+        self.pen.end_fill()
+        self.pen.up()
 
 
 class Text:
@@ -128,18 +139,18 @@ class Square(Rectangle):
     def fake_method(self, a, b, c, d):  # four positional arguments
         print(f"{a = }, {b = }, {c = }, {d = }")
 
-    def fake_method2(self, a=1, b=2, c=3, d=4): # four keyword arguments
+    def fake_method2(self, a=1, b=2, c=3, d=4):  # four keyword arguments
         print(f"{a = }, {b = }, {c = }, {d = }")
 
 
 def main():
     # instantiate
-    circle = Circle(radius=5)
+    circle = Circle(radius=80)
     # print(f"The area is {area(self)}")
     print(circle)
     circle.position = (30, -50)
     print(circle)
-    circle.radius = 17
+    # circle.radius = 17
     print(str(circle))
     print(f"My diameter is {circle.diameter}{circle.units}.")
     print(f"My area is {circle.area}{circle.units}^2.")
@@ -164,12 +175,16 @@ def main():
     # print(f"{square.fake_method(1, 2, 3, 4) = }")
     square.fake_method(*my_tuple)
 
-    my_dict = {'a':5, 'b':6, 'c':7, 'd':8}
+    my_dict = {'a': 5, 'b': 6, 'c': 7, 'd': 8}
     square.fake_method2(**my_dict)
 
     # canvas
     canvas = Canvas()
     canvas.mystery_method()
+
+    # draw the circle
+    canvas.draw_circle(circle)
+
     turtle.done()
 
     return 0
