@@ -38,10 +38,18 @@ def draw_triangle():
     turtle.goto(0, 0)
     turtle.done()
 
+def write_text(text):
+    turtle.penup()
+    turtle.goto(20, 20)
+    turtle.write(text, font=("Arial", 20, "normal"))
+    turtle.done()
+
+
 def main():
     # draw_rectangle()
     # draw_circle(180)
-    draw_triangle()
+    # draw_triangle()
+    write_text("Hello World")
     return 0
 
 

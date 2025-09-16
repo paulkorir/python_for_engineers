@@ -172,12 +172,21 @@ class Canvas(turtle.TurtleScreen):
         # circle.draw(self.pen)
         shape.draw(self.pen)
 
+    def write(self, text):
+        text.write(self.pen)
+
 
 class Text:
     def __init__(self, text, colour="red", position=(0, 0)):
         self.text = text
         self.position = position
         self.colour = colour
+
+    def write(self, pen):
+        pen.up()
+        pen.goto(self.position[0], self.position[1])
+        turtle.write(self.text, font=("Arial", 40, "normal"))
+
 
 
 # class Square:
@@ -260,6 +269,9 @@ def main():
 
     triangle = Triangle()
     canvas.draw(triangle)
+
+    text = Text("Hello world!", position=(-72, -67))
+    canvas.write(text)
 
     turtle.done()
 
