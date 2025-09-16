@@ -38,6 +38,19 @@ class Circle:
         y_max = self.position[1] + self.radius
         return x_min, y_min, x_max, y_max
 
+    def draw(self, pen):
+        if pen.isdown():
+            pen.up()
+        x, y = self.position  # unpacking operation of a sequence type (list, tuple)
+        pen.goto(x, y)
+        pen.down()
+        pen.begin_fill()
+        pen.pencolor(self.stroke)
+        pen.fillcolor(self.fill)
+        pen.circle(self.radius)
+        pen.end_fill()
+        pen.up()
+
 
 class Rectangle:
     def __init__(self, width, height, fill="white", stroke="black", stroke_width=1, opacity=1.0, position=(0, 0)):
@@ -65,8 +78,40 @@ class Rectangle:
     def diagonal(self):
         return math.sqrt(self.width ** 2 + self.height ** 2)
 
+    def draw(self, pen):
+        if pen.isdown():
+            pen.up()
+        x, y = self.position
+        pen.goto(x, y)
+        pen.begin_fill()
+        pen.pencolor(self.stroke)
+        pen.fillcolor(self.fill)
+        pen.forward(self.width)
+        pen.right(90)  # 90 degree rotation
+        pen.forward(self.height)
+        pen.right(90)
+        pen.forward(self.width)
+        pen.right(90)
+        pen.forward(self.height)
+        pen.end_fill()
+        pen.up()
+
     def __str__(self):
         return f"Rectangle: {self.width} * {self.height}"
+
+
+class Triangle:
+    def __init__(self):
+        pass
+
+    def draw(self, pen):
+        pen.up()
+        pen.goto(0, 0)
+        pen.down()
+        pen.forward(400)
+        pen.left(90)
+        pen.forward(300)
+        pen.goto(0, 0)
 
 
 class Canvas(turtle.TurtleScreen):
@@ -99,11 +144,33 @@ class Canvas(turtle.TurtleScreen):
         self.pen.goto(x, y)
         self.pen.down()
         self.pen.begin_fill()
-        self.pen.pencolor("red")
-        self.pen.fillcolor("purple")
+        self.pen.pencolor(circle.stroke)
+        self.pen.fillcolor(circle.fill)
         self.pen.circle(circle.radius)
         self.pen.end_fill()
         self.pen.up()
+
+    def draw_rectangle(self, rectangle):
+        if self.pen.isdown():
+            self.pen.up()
+        x, y = rectangle.position
+        self.pen.goto(x, y)
+        self.pen.begin_fill()
+        self.pen.pencolor(rectangle.stroke)
+        self.pen.fillcolor(rectangle.fill)
+        self.pen.forward(rectangle.width)
+        self.pen.right(90)  # 90 degree rotation
+        self.pen.forward(rectangle.height)
+        self.pen.right(90)
+        self.pen.forward(rectangle.width)
+        self.pen.right(90)
+        self.pen.forward(rectangle.height)
+        self.pen.end_fill()
+        self.pen.up()
+
+    def draw(self, shape):  # generate shape
+        # circle.draw(self.pen)
+        shape.draw(self.pen)
 
 
 class Text:
@@ -181,9 +248,18 @@ def main():
     # canvas
     canvas = Canvas()
     canvas.mystery_method()
+    canvas.draw(circle)
 
     # draw the circle
-    canvas.draw_circle(circle)
+    # canvas.draw_circle(circle)
+
+    # draw a rectangle
+    rect = Rectangle(150, 87, fill="blue", stroke="orange", position=(-250, 193))
+    # canvas.draw_rectangle(rect)
+    canvas.draw(rect)
+
+    triangle = Triangle()
+    canvas.draw(triangle)
 
     turtle.done()
 

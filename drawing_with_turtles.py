@@ -31,9 +31,17 @@ def draw_circle(radius=60):
     pen.up()
     turtle.done()
 
+def draw_triangle():
+    turtle.forward(400)
+    turtle.left(90)
+    turtle.forward(300)
+    turtle.goto(0, 0)
+    turtle.done()
+
 def main():
     # draw_rectangle()
-    draw_circle(180)
+    # draw_circle(180)
+    draw_triangle()
     return 0
 
 
