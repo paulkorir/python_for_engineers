@@ -177,15 +177,17 @@ class Canvas(turtle.TurtleScreen):
 
 
 class Text:
-    def __init__(self, text, colour="red", position=(0, 0)):
+    def __init__(self, text, colour="red", align="center", font="Arial", position=(0, 0)):
         self.text = text
         self.position = position
         self.colour = colour
+        self.align = align
+        self.font = font
 
     def write(self, pen):
         pen.up()
         pen.goto(self.position[0], self.position[1])
-        turtle.write(self.text, font=("Arial", 40, "normal"))
+        turtle.write(self.text, align=self.align, font=(self.font, 40, "normal"))
 
 
 
@@ -255,22 +257,40 @@ def main():
     square.fake_method2(**my_dict)
 
     # canvas
-    canvas = Canvas()
-    canvas.mystery_method()
-    canvas.draw(circle)
+    # canvas = Canvas()
+    # canvas.mystery_method()
+    # canvas.draw(circle)
+    #
+    # # draw the circle
+    # # canvas.draw_circle(circle)
+    #
+    # # draw a rectangle
+    # rect = Rectangle(150, 87, fill="blue", stroke="orange", position=(-250, 193))
+    # # canvas.draw_rectangle(rect)
+    # canvas.draw(rect)
+    #
+    # triangle = Triangle()
+    # canvas.draw(triangle)
+    #
+    # text = Text("Hello world!", position=(-72, -67))
+    # canvas.write(text)
+    #
+    # turtle.done()
 
-    # draw the circle
-    # canvas.draw_circle(circle)
-
-    # draw a rectangle
-    rect = Rectangle(150, 87, fill="blue", stroke="orange", position=(-250, 193))
-    # canvas.draw_rectangle(rect)
-    canvas.draw(rect)
-
-    triangle = Triangle()
-    canvas.draw(triangle)
-
-    text = Text("Hello world!", position=(-72, -67))
+    canvas = Canvas(1000, 700)
+    gquad = Rectangle(
+        200, 300, fill='#009a44', stroke='white', position=(-200, 0)
+    )
+    wquad = Rectangle(
+        200, 300, fill='white', stroke='#dddddd', position=(0, 0)
+    )
+    oquad = Rectangle(
+        200, 300, fill='#ff8200', stroke='white', position=(200, 0)
+    )
+    text = Text('IRELAND', position=(0, -250), align='center', font=('Arial', 60, 'bold'))
+    canvas.draw(gquad)
+    canvas.draw(wquad)
+    canvas.draw(oquad)
     canvas.write(text)
 
     turtle.done()
