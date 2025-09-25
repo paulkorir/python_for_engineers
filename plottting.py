@@ -43,11 +43,30 @@ def plot_multiplots_and_export():
     plt.close(fig)
 
 
+def plot_legend():
+    x = np.linspace(0, 2 * np.pi, 200)
+    y = np.sin(x)
+    z = np.cos(x)
+    fig, ax = plt.subplots()
+    ax.plot(x, y, label="sin(x)")
+    ax.plot(x, z, label="cos(x)")
+    ax.legend()
+    ax.set_title('Plot Title')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.grid(True, linestyle='-.')
+    ax.tick_params(axis='y', labelcolor='r', labelsize='medium', width=3)
+    ax.set_xlim(6, 0)
+    ax.axhline(0, color='black', linewidth=2)
+    plt.show()
+
+
 def main():
     # plot_lines()
     # plot_scatter()
     # plot_histogram()
-    plot_multiplots_and_export()
+    # plot_multiplots_and_export()
+    plot_legend()
     return 0
 
 
