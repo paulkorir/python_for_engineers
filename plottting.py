@@ -1,8 +1,8 @@
+import random
 import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
-import random
 
 
 def plot_lines():
@@ -17,21 +17,37 @@ def plot_lines():
 
 
 def plot_scatter():
-    x = [random.random() for _ in range(30)] # list comprehension
+    x = [random.random() for _ in range(30)]  # list comprehension
     y = [random.random() for _ in range(30)]
     fig, ax = plt.subplots()
     ax.scatter(x, y)
     plt.show()
 
+
 def plot_histogram():
-    data = [random.gauss(0, 1) for _ in range(1000)] # N(0, 1)
+    data = [random.gauss(0, 1) for _ in range(1000)]  # N(0, 1)
     fig, ax = plt.subplots()
     n, bins, patches = ax.hist(data, 20, density=True)
     plt.show()
 
+
+def plot_multiplots_and_export():
+    x = [random.random() for _ in range(30)]  # list comprehension
+    y = [random.random() for _ in range(30)]
+    data = [random.gauss(0, 1) for _ in range(1000)]  # N(0, 1)
+    fig, ax = plt.subplots(1, 2)
+    ax[0].scatter(x, y)
+    ax[1].hist(data)
+    plt.show()
+    fig.savefig("plot.png")
+    plt.close(fig)
+
+
 def main():
     # plot_lines()
     # plot_scatter()
+    # plot_histogram()
+    plot_multiplots_and_export()
     return 0
 
 
