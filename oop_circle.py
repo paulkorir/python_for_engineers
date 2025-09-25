@@ -190,21 +190,6 @@ class Text:
         turtle.write(self.text, align=self.align, font=(self.font, 40, "normal"))
 
 
-
-# class Square:
-#     def __init__(self, width, fill="white", stroke="black", position=(0, 0)):
-#         self.width = width
-#         self.fill = fill
-#         self.stroke = stroke
-#         self.position = position
-#
-#     def area(self):
-#         return self.width ** 2
-#
-#     def __str__(self):
-#         return f"Square: {self.width} * {self.width}"
-
-
 class Square(Rectangle):
     def __init__(self, width, *args, **kwargs):
         print(f"{args = }")
@@ -219,6 +204,25 @@ class Square(Rectangle):
 
     def fake_method2(self, a=1, b=2, c=3, d=4):  # four keyword arguments
         print(f"{a = }, {b = }, {c = }, {d = }")
+
+
+def composite_shape():
+    """Composite shape"""
+    shape = turtle.Shape("composite")
+    shape.addcomponent(
+        Square(
+            width=100,
+            colour="red",
+            position=(20, 20)
+        )
+    )
+    shape.addcomponent(
+        Circle(
+            200,
+            colour="orange",
+            position=(-100, -100)
+        )
+    )
 
 
 def main():
@@ -279,13 +283,13 @@ def main():
 
     canvas = Canvas(1000, 700)
     gquad = Rectangle(
-        200, 300, fill='#009a44', stroke='white', position=(-200, 0)
+        200, 300, fill='#009a44', stroke='white', position=(-200, 300)
     )
     wquad = Rectangle(
-        200, 300, fill='white', stroke='#dddddd', position=(0, 0)
+        200, 300, fill='white', stroke='#dddddd', position=(0, 300)
     )
     oquad = Rectangle(
-        200, 300, fill='#ff8200', stroke='white', position=(200, 0)
+        200, 300, fill='#ff8200', stroke='white', position=(200, 300)
     )
     text = Text('IRELAND', position=(0, -250), align='center', font=('Arial', 60, 'bold'))
     canvas.draw(gquad)
