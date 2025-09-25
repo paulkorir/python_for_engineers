@@ -2,6 +2,7 @@ import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 
 
 def plot_lines():
@@ -15,8 +16,22 @@ def plot_lines():
     plt.show()
 
 
+def plot_scatter():
+    x = [random.random() for _ in range(30)] # list comprehension
+    y = [random.random() for _ in range(30)]
+    fig, ax = plt.subplots()
+    ax.scatter(x, y)
+    plt.show()
+
+def plot_histogram():
+    data = [random.gauss(0, 1) for _ in range(1000)] # N(0, 1)
+    fig, ax = plt.subplots()
+    n, bins, patches = ax.hist(data, 20, density=True)
+    plt.show()
+
 def main():
-    plot_lines()
+    # plot_lines()
+    # plot_scatter()
     return 0
 
 
